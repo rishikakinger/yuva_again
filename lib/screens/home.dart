@@ -164,7 +164,7 @@ class _HomeState extends State<Home> {
                                     width: 30,
                                   ),
                                   Text(
-                                    'voice_channel'.tr(),
+                                    'Video Channels'.tr(),
                                     style: GoogleFonts.alata(
                                         color: Colors.black, fontSize: 18),
                                   ),

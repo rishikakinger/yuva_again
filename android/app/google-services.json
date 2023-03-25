@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "841567880089-m37c52k0ds6nhhmlnfhvnftk94u6a4ss.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yuvaagain",
+            "certificate_hash": "80b86e62883bbb1b6d3fc3e49d6918dadf3aedb2"
+          }
+        },
+        {
           "client_id": "841567880089-g1oe68dq196pmu3t562k6o4haup0klvt.apps.googleusercontent.com",
           "client_type": 3
         }

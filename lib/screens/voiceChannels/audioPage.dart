@@ -16,7 +16,7 @@ class Audio extends StatefulWidget {
 class _AudioState extends State<Audio> {
   String channelName = "Knitting";
   String token = "";
-  static const appId = "6b5b2b71aa4d4b0398c8d19b7f69ae93";
+  static const appId = "5ef9b48c22384b14bf4faccc9d250bc0";
   int uid = 0; // uid of the local user
   bool mute = false;
   int? _remoteUid; // uid of the remote user

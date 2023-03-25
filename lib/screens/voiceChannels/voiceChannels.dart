@@ -50,146 +50,146 @@ class _VoiceChannelsState extends State<VoiceChannels> {
                 child: Row(
                   children: explore == false
                       ? [
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    offset: Offset(0, 4),
-                                    blurRadius: 4)
-                              ], borderRadius: BorderRadius.circular(20)),
-                              child: TextButton(
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                        ),
-                                      ),
-                                      backgroundColor:
-                                          MaterialStateColor.resolveWith(
-                                              (states) => Color(0xffFBD46D))),
-                                  onPressed: () {
-                                    setState(() {
-                                      explore = false;
-                                    });
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Text("Your channels",
-                                        style: GoogleFonts.alata(
-                                            color: Color(0xff2A1F00),
-                                            fontSize: 26)),
-                                  )),
-                            ),
-                          ),
-                          Expanded(
-                            child: TextButton(
-                                onPressed: () {
-                                  setState(() {
-                                    explore = true;
-                                  });
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Text(
-                                    "Explore",
-                                    style: GoogleFonts.alata(
-                                        color: Color(0xff2A1F00), fontSize: 26),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(0.25),
+                              offset: Offset(0, 4),
+                              blurRadius: 4)
+                        ], borderRadius: BorderRadius.circular(20)),
+                        child: TextButton(
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.circular(20.0),
                                   ),
-                                )),
-                          )
-                        ]
+                                ),
+                                backgroundColor:
+                                MaterialStateColor.resolveWith(
+                                        (states) => Color(0xffFBD46D))),
+                            onPressed: () {
+                              setState(() {
+                                explore = false;
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Text("Your channels",
+                                  style: GoogleFonts.alata(
+                                      color: Color(0xff2A1F00),
+                                      fontSize: 26)),
+                            )),
+                      ),
+                    ),
+                    Expanded(
+                      child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              explore = true;
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text(
+                              "Explore",
+                              style: GoogleFonts.alata(
+                                  color: Color(0xff2A1F00), fontSize: 26),
+                            ),
+                          )),
+                    )
+                  ]
                       : [
-                          Expanded(
-                            child: TextButton(
-                                onPressed: () {
-                                  setState(() {
-                                    explore = false;
-                                  });
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Text(
-                                    "Your channels",
-                                    style: GoogleFonts.alata(
-                                        color: Color(0xff2A1F00), fontSize: 26),
-                                  ),
-                                )),
-                          ),
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    offset: Offset(0, 4),
-                                    blurRadius: 4)
-                              ], borderRadius: BorderRadius.circular(20)),
-                              child: TextButton(
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                        ),
-                                      ),
-                                      backgroundColor:
-                                          MaterialStateColor.resolveWith(
-                                              (states) => Color(0xffFBD46D))),
-                                  onPressed: () {
-                                    setState(() {
-                                      explore = true;
-                                    });
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Text("Explore",
-                                        style: GoogleFonts.alata(
-                                            color: Color(0xff2A1F00),
-                                            fontSize: 26)),
-                                  )),
+                    Expanded(
+                      child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              explore = false;
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text(
+                              "Your channels",
+                              style: GoogleFonts.alata(
+                                  color: Color(0xff2A1F00), fontSize: 26),
                             ),
-                          ),
-                        ],
+                          )),
+                    ),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(0.25),
+                              offset: Offset(0, 4),
+                              blurRadius: 4)
+                        ], borderRadius: BorderRadius.circular(20)),
+                        child: TextButton(
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.circular(20.0),
+                                  ),
+                                ),
+                                backgroundColor:
+                                MaterialStateColor.resolveWith(
+                                        (states) => Color(0xffFBD46D))),
+                            onPressed: () {
+                              setState(() {
+                                explore = true;
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Text("Explore",
+                                  style: GoogleFonts.alata(
+                                      color: Color(0xff2A1F00),
+                                      fontSize: 26)),
+                            )),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               explore
                   ? Container(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(32, 32.0, 32, 8),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: TextField(
-                                keyboardType: TextInputType.number,
-                                style: GoogleFonts.alata(color: Colors.black),
-                                decoration: InputDecoration(
-                                    suffixIcon: IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.search,
-                                        color: Color(0xff12253A),
-                                      ),
-                                    ),
-                                    filled: true,
-                                    fillColor: Color(0xffFDF2C9),
-                                    focusColor: Color(0xffFDF2C9),
-                                    hoverColor: Color(0xffFDF2C9),
-                                    focusedBorder: const OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Color(0xff12253A))),
-                                    labelText: "Search",
-                                    labelStyle: GoogleFonts.alata(
-                                        fontSize: 16,
-                                        color: Color(0xff12253A))),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(32, 32.0, 32, 8),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          style: GoogleFonts.alata(color: Colors.black),
+                          decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.search,
+                                  color: Color(0xff12253A),
+                                ),
                               ),
-                            ),
-                          ],
+                              filled: true,
+                              fillColor: Color(0xffFDF2C9),
+                              focusColor: Color(0xffFDF2C9),
+                              hoverColor: Color(0xffFDF2C9),
+                              focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Color(0xff12253A))),
+                              labelText: "Search",
+                              labelStyle: GoogleFonts.alata(
+                                  fontSize: 16,
+                                  color: Color(0xff12253A))),
                         ),
                       ),
-                    )
+                    ],
+                  ),
+                ),
+              )
                   : Container(),
               Expanded(
                 child: ListView.builder(
@@ -216,7 +216,7 @@ class _VoiceChannelsState extends State<VoiceChannels> {
                                 Image.asset('assets/images/events.png'),
                                 Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(16, 8.0, 0, 4),
+                                  const EdgeInsets.fromLTRB(16, 8.0, 0, 4),
                                   child: Text(
                                     yourchannels[index],
                                     style: GoogleFonts.alata(fontSize: 30),
@@ -238,34 +238,36 @@ class _VoiceChannelsState extends State<VoiceChannels> {
                                                   blurRadius: 4)
                                             ],
                                             borderRadius:
-                                                BorderRadius.circular(20)),
+                                            BorderRadius.circular(20)),
                                         child: TextButton(
                                             style: ButtonStyle(
                                                 shape:
-                                                    MaterialStateProperty.all<
-                                                        RoundedRectangleBorder>(
+                                                MaterialStateProperty.all<
+                                                    RoundedRectangleBorder>(
                                                   RoundedRectangleBorder(
                                                     borderRadius:
-                                                        BorderRadius.circular(
-                                                            20.0),
+                                                    BorderRadius.circular(
+                                                        20.0),
                                                   ),
                                                 ),
                                                 backgroundColor:
-                                                    MaterialStateColor
-                                                        .resolveWith((states) =>
-                                                            Color(0xffFBD46D))),
+                                                MaterialStateColor
+                                                    .resolveWith((states) =>
+                                                    Color(0xffFBD46D))),
                                             onPressed: () {
                                               Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                      builder: (builder) =>
-                                                          Audio()));
+                                                      builder: (context) => CallPage(callID: "1")
+
+
+                                                  ));
                                             },
                                             child: Padding(
                                               padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 4.0,
-                                                      horizontal: 32),
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 4.0,
+                                                  horizontal: 32),
                                               child: Text("JOIN",
                                                   style: GoogleFonts.alata(
                                                       color: Color(0xff2A1F00),
@@ -289,6 +291,6 @@ class _VoiceChannelsState extends State<VoiceChannels> {
 
   channelClicked() {
     treeincrement(auth!.currentUser!.uid);
-    Navigator.push(context, MaterialPageRoute(builder: (builder) => Audio()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => CallPage(callID: "1")));
   }
 }

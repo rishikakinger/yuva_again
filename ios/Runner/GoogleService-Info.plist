@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>841567880089-novfa878qka3ad9ti3ct3blujjhpk7da.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.841567880089-novfa878qka3ad9ti3ct3blujjhpk7da</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>841567880089-4vogjds5f8557nait7sbvjaddei1cubt.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBtwyqnZToLjgzI2mU2dphB-ux4ftW_omo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>841567880089</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.yuvaAgain</string>
+	<key>PROJECT_ID</key>
+	<string>yuvaagain-1c6bd</string>
+	<key>STORAGE_BUCKET</key>
+	<string>yuvaagain-1c6bd.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:841567880089:ios:d04900b5d812a279cac908</string>
+</dict>
+</plist>

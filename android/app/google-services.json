@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "841567880089",
+    "firebase_url": "https://yuvaagain-1c6bd-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "yuvaagain-1c6bd",
+    "storage_bucket": "yuvaagain-1c6bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841567880089:android:8ca8f263d5911f53cac908",
+        "android_client_info": {
+          "package_name": "com.example.yuvaagain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841567880089-4vogjds5f8557nait7sbvjaddei1cubt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yuvaagain",
+            "certificate_hash": "20ec571b93d1933bc35feda0928bfa9582936c1a"
+          }
+        },
+        {
+          "client_id": "841567880089-g1oe68dq196pmu3t562k6o4haup0klvt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4G6Gbb_ce8jQBiZph7yqq1IjAMmCn-Ak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841567880089-g1oe68dq196pmu3t562k6o4haup0klvt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "841567880089-novfa878qka3ad9ti3ct3blujjhpk7da.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.yuvaAgain"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

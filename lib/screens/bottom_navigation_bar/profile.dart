@@ -283,13 +283,7 @@ class _ProfileState extends State<Profile> {
                           size: 34,
                           color: Color(0xffFCE39A),
                         )),
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.settings,
-                          size: 34,
-                          color: Color(0xffFCE39A),
-                        )),
+
                     IconButton(
                         onPressed: () {},
                         icon: Icon(

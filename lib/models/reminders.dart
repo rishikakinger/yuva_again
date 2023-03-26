@@ -13,5 +13,8 @@ class Reminders extends HiveObject {
   @HiveField(4)
   late String category;
   @HiveField(5)
+  late bool recurring;
+  @HiveField(6)
   late bool done;
+
 }

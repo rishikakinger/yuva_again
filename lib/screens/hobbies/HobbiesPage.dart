@@ -1,4 +1,6 @@
 import 'dart:math';
+import 'dart:async';
+
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
@@ -28,6 +30,8 @@ class _HobbyTrackerState extends State<HobbyTracker> {
   FirebaseAuth? auth;
   List categories = ['events', 'voice_channel', 'reminder'];
   bool notified = true;
+
+  bool recurring = false;
   int selectedCategory = -1;
   int categoryIndex = 0;
   List allEvents = [];
@@ -48,210 +52,210 @@ class _HobbyTrackerState extends State<HobbyTracker> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Color(0xffFEFCF3),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          resizeToAvoidBottomInset: false,
+          backgroundColor: Color(0xffFEFCF3),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                alignment: Alignment.center,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                  Stack(
+                    alignment: Alignment.center,
                     children: [
-                      Container(color: Color(0xffFBD46D), height: 45),
-                      Container(
-                          color: Color(0xffFBE289).withOpacity(0.4),
-                          height: 30),
-                      Container(height: 40, color: Color(0xffFEFCF3))
-                    ],
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xff12253A),
-                          borderRadius: BorderRadius.circular(50)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 12),
-                        child: Text(
-                          "Ya",
-                          style: GoogleFonts.dancingScript(
-                              color: Colors.white, fontSize: 64),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Container(color: Color(0xffFBD46D), height: 45),
+                          Container(
+                              color: Color(0xffFBE289).withOpacity(0.4),
+                              height: 30),
+                          Container(height: 40, color: Color(0xffFEFCF3))
+                        ],
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xff12253A),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 12),
+                            child: Text(
+                              "Ya",
+                              style: GoogleFonts.dancingScript(
+                                  color: Colors.white, fontSize: 64),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  Positioned(
-                      bottom: 15,
-                      left: 15,
-                      child: CircleAvatar(
-                        radius: 30,
-                        backgroundColor: Color(0xff333232),
-                        child: IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: Icon(
-                              Icons.arrow_back,
-                              size: 32,
-                              color: Colors.white,
-                            )),
-                      )),
-                  Positioned(
-                      bottom: 15,
-                      right: 15,
-                      child: CircleAvatar(
-                        radius: 30,
-                        backgroundColor: const Color(0xff333232),
-                        child: IconButton(
-                            onPressed: () {
-                              showDialog(
-                                  context: context,
-                                  builder:
-                                      (builder) => StatefulBuilder(
-                                              builder: (context, setState) {
+                      Positioned(
+                          bottom: 15,
+                          left: 15,
+                          child: CircleAvatar(
+                            radius: 30,
+                            backgroundColor: Color(0xff333232),
+                            child: IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: Icon(
+                                  Icons.arrow_back,
+                                  size: 32,
+                                  color: Colors.white,
+                                )),
+                          )),
+                      Positioned(
+                          bottom: 15,
+                          right: 15,
+                          child: CircleAvatar(
+                            radius: 30,
+                            backgroundColor: const Color(0xff333232),
+                            child: IconButton(
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      builder:
+                                          (builder) => StatefulBuilder(
+                                          builder: (context, setState) {
                                             return Center(
                                               child: Container(
                                                 width: MediaQuery.of(context)
-                                                        .size
-                                                        .width -
+                                                    .size
+                                                    .width -
                                                     32,
                                                 decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.circular(12),
+                                                  BorderRadius.circular(12),
                                                   color: Colors.white,
                                                 ),
                                                 child: Material(
                                                   borderRadius:
-                                                      BorderRadius.circular(12),
+                                                  BorderRadius.circular(12),
                                                   child: Column(
                                                     mainAxisSize:
-                                                        MainAxisSize.min,
+                                                    MainAxisSize.min,
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    CrossAxisAlignment
+                                                        .start,
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                24.0,
-                                                                24,
-                                                                24,
-                                                                12),
+                                                        const EdgeInsets
+                                                            .fromLTRB(
+                                                            24.0,
+                                                            24,
+                                                            24,
+                                                            12),
                                                         child: Text(
                                                           'create_a_reminder'
                                                               .tr(),
                                                           style:
-                                                              GoogleFonts.alata(
-                                                                  fontSize: 18),
+                                                          GoogleFonts.alata(
+                                                              fontSize: 18),
                                                         ),
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                horizontal:
-                                                                    16.0),
+                                                        const EdgeInsets
+                                                            .symmetric(
+                                                            horizontal:
+                                                            16.0),
                                                         child: TextField(
                                                           controller:
-                                                              nameController,
+                                                          nameController,
                                                           style:
-                                                              GoogleFonts.alata(
-                                                                  color: Colors
-                                                                      .black),
+                                                          GoogleFonts.alata(
+                                                              color: Colors
+                                                                  .black),
                                                           decoration: InputDecoration(
                                                               contentPadding:
-                                                                  EdgeInsets.symmetric(
-                                                                      vertical:
-                                                                          2,
-                                                                      horizontal:
-                                                                          16),
+                                                              EdgeInsets.symmetric(
+                                                                  vertical:
+                                                                  2,
+                                                                  horizontal:
+                                                                  16),
                                                               focusedBorder: const OutlineInputBorder(
                                                                   borderSide: BorderSide(
                                                                       color: Color(
                                                                           0xff3F38DD))),
                                                               labelText:
-                                                                  "name_of_the_reminder"
-                                                                      .tr(),
+                                                              "name_of_the_reminder"
+                                                                  .tr(),
                                                               labelStyle:
-                                                                  GoogleFonts.alata(
-                                                                      fontSize:
-                                                                          14,
-                                                                      color: Colors
-                                                                          .black)),
+                                                              GoogleFonts.alata(
+                                                                  fontSize:
+                                                                  14,
+                                                                  color: Colors
+                                                                      .black)),
                                                         ),
                                                       ),
                                                       InkWell(
                                                         onTap: () async {
                                                           final todayDate =
-                                                              DateTime.now();
+                                                          DateTime.now();
                                                           final pickDate =
-                                                              await showDatePicker(
-                                                                  locale: context
-                                                                      .locale,
-                                                                  context:
-                                                                      context,
-                                                                  initialDate:
-                                                                      todayDate,
-                                                                  firstDate:
-                                                                      todayDate,
-                                                                  builder: (BuildContext
-                                                                          context,
-                                                                      Widget?
-                                                                          child) {
-                                                                    return Theme(
-                                                                      data: ThemeData
-                                                                              .light()
-                                                                          .copyWith(
-                                                                        primaryColor:
-                                                                            const Color(0xff3F38DD),
-                                                                        accentColor:
-                                                                            const Color(0xff3F38DD),
-                                                                        colorScheme:
-                                                                            ColorScheme.light(primary: const Color(0xff3F38DD)),
-                                                                      ),
-                                                                      child:
-                                                                          child!,
-                                                                    );
-                                                                  },
-                                                                  lastDate: DateTime(
-                                                                      todayDate
-                                                                              .year +
-                                                                          1));
+                                                          await showDatePicker(
+                                                              locale: context
+                                                                  .locale,
+                                                              context:
+                                                              context,
+                                                              initialDate:
+                                                              todayDate,
+                                                              firstDate:
+                                                              todayDate,
+                                                              builder: (BuildContext
+                                                              context,
+                                                                  Widget?
+                                                                  child) {
+                                                                return Theme(
+                                                                  data: ThemeData
+                                                                      .light()
+                                                                      .copyWith(
+                                                                    primaryColor:
+                                                                    const Color(0xff3F38DD),
+                                                                    accentColor:
+                                                                    const Color(0xff3F38DD),
+                                                                    colorScheme:
+                                                                    ColorScheme.light(primary: const Color(0xff3F38DD)),
+                                                                  ),
+                                                                  child:
+                                                                  child!,
+                                                                );
+                                                              },
+                                                              lastDate: DateTime(
+                                                                  todayDate
+                                                                      .year +
+                                                                      1));
                                                           if (pickDate !=
                                                               null) {
                                                             final pickTime =
-                                                                await showTimePicker(
-                                                                    context:
-                                                                        context,
-                                                                    builder: (BuildContext
-                                                                            context,
-                                                                        Widget?
-                                                                            child) {
-                                                                      return Theme(
-                                                                        data: ThemeData.light()
-                                                                            .copyWith(
-                                                                          primaryColor:
-                                                                              const Color(0xff3F38DD),
-                                                                          accentColor:
-                                                                              const Color(0xff3F38DD),
-                                                                          colorScheme:
-                                                                              ColorScheme.light(primary: const Color(0xff3F38DD)),
-                                                                        ),
-                                                                        child:
-                                                                            child!,
-                                                                      );
-                                                                    },
-                                                                    initialTime: const TimeOfDay(
-                                                                        hour: 9,
-                                                                        minute:
-                                                                            0));
+                                                            await showTimePicker(
+                                                                context:
+                                                                context,
+                                                                builder: (BuildContext
+                                                                context,
+                                                                    Widget?
+                                                                    child) {
+                                                                  return Theme(
+                                                                    data: ThemeData.light()
+                                                                        .copyWith(
+                                                                      primaryColor:
+                                                                      const Color(0xff3F38DD),
+                                                                      accentColor:
+                                                                      const Color(0xff3F38DD),
+                                                                      colorScheme:
+                                                                      ColorScheme.light(primary: const Color(0xff3F38DD)),
+                                                                    ),
+                                                                    child:
+                                                                    child!,
+                                                                  );
+                                                                },
+                                                                initialTime: const TimeOfDay(
+                                                                    hour: 9,
+                                                                    minute:
+                                                                    0));
                                                             if (pickTime !=
                                                                 null) {
                                                               setState(() {
@@ -272,24 +276,24 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                                                         },
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsets
-                                                                  .all(12.0),
+                                                          const EdgeInsets
+                                                              .all(12.0),
                                                           child: Row(
                                                             children: [
                                                               Container(
                                                                 decoration: BoxDecoration(
                                                                     color: Color(
-                                                                            0xff3F38DD)
+                                                                        0xff3F38DD)
                                                                         .withOpacity(
-                                                                            0.17),
+                                                                        0.17),
                                                                     borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12)),
+                                                                    BorderRadius.circular(
+                                                                        12)),
                                                                 child: Padding(
                                                                   padding:
-                                                                      const EdgeInsets
-                                                                              .all(
-                                                                          8.0),
+                                                                  const EdgeInsets
+                                                                      .all(
+                                                                      8.0),
                                                                   child: Icon(
                                                                     Icons
                                                                         .calendar_today,
@@ -300,20 +304,20 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        left:
-                                                                            8.0),
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left:
+                                                                    8.0),
                                                                 child: Column(
                                                                   crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
+                                                                  CrossAxisAlignment
+                                                                      .start,
                                                                   children: [
                                                                     Text(
                                                                       "${mydate.day} ${DateFormat('MMMM').format(mydate)}, ${mydate.year}",
                                                                       style: GoogleFonts.alata(
                                                                           fontSize:
-                                                                              14),
+                                                                          14),
                                                                     ),
                                                                     Text(
                                                                         "${DateFormat('EEEE').format(mydate)}," +
@@ -321,7 +325,7 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                                                                                 mydate),
                                                                         style: GoogleFonts.alata(
                                                                             color:
-                                                                                Color(0xff767676),
+                                                                            Color(0xff767676),
                                                                             fontSize: 14))
                                                                   ],
                                                                 ),
@@ -332,14 +336,14 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets
-                                                                .all(12.0),
+                                                        const EdgeInsets
+                                                            .all(12.0),
                                                         child: InkWell(
                                                           onTap: () {
                                                             setState(() {
                                                               categoryIndex =
                                                                   (categoryIndex +
-                                                                          1) %
+                                                                      1) %
                                                                       categories
                                                                           .length;
                                                               print(
@@ -351,18 +355,18 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                                                               Container(
                                                                 decoration: BoxDecoration(
                                                                     color: Color(
-                                                                            0xff3F38DD)
+                                                                        0xff3F38DD)
                                                                         .withOpacity(
-                                                                            0.17),
+                                                                        0.17),
                                                                     borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12)),
+                                                                    BorderRadius.circular(
+                                                                        12)),
                                                                 child:
-                                                                    const Padding(
+                                                                const Padding(
                                                                   padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              8.0),
+                                                                  EdgeInsets
+                                                                      .all(
+                                                                      8.0),
                                                                   child: Icon(
                                                                     Icons
                                                                         .category,
@@ -373,21 +377,21 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        left:
-                                                                            8.0),
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left:
+                                                                    8.0),
                                                                 child: Column(
                                                                   crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
+                                                                  CrossAxisAlignment
+                                                                      .start,
                                                                   children: [
                                                                     Text(
                                                                       "category"
                                                                           .tr(),
                                                                       style: GoogleFonts.alata(
                                                                           fontSize:
-                                                                              14),
+                                                                          14),
                                                                     ),
                                                                     Text(
                                                                         categories[categoryIndex]
@@ -395,7 +399,7 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                                                                             .tr(),
                                                                         style: GoogleFonts.alata(
                                                                             color:
-                                                                                Color(0xff767676),
+                                                                            Color(0xff767676),
                                                                             fontSize: 14))
                                                                   ],
                                                                 ),
@@ -406,8 +410,8 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets
-                                                                .all(12.0),
+                                                        const EdgeInsets
+                                                            .all(12.0),
                                                         child: InkWell(
                                                           onTap: () {
                                                             setState(() {
@@ -416,27 +420,28 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                                                                 notified = true;
                                                               } else {
                                                                 notified =
-                                                                    false;
+                                                                false;
                                                               }
-                                                            });
+                                                            }
+                                                            );
                                                           },
                                                           child: Row(
                                                             children: [
                                                               Container(
                                                                 decoration: BoxDecoration(
                                                                     color: Color(
-                                                                            0xff3F38DD)
+                                                                        0xff3F38DD)
                                                                         .withOpacity(
-                                                                            0.17),
+                                                                        0.17),
                                                                     borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12)),
+                                                                    BorderRadius.circular(
+                                                                        12)),
                                                                 child:
-                                                                    const Padding(
+                                                                const Padding(
                                                                   padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              8.0),
+                                                                  EdgeInsets
+                                                                      .all(
+                                                                      8.0),
                                                                   child: Icon(
                                                                     Icons
                                                                         .notifications,
@@ -447,39 +452,122 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        left:
-                                                                            8.0),
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left:
+                                                                    8.0),
                                                                 child: Column(
                                                                   crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
+                                                                  CrossAxisAlignment
+                                                                      .start,
                                                                   children: [
                                                                     Text(
                                                                       "get_notified"
                                                                           .tr(),
                                                                       style: GoogleFonts.alata(
                                                                           fontSize:
-                                                                              14),
+                                                                          14),
                                                                     ),
                                                                     Text(
                                                                         notified
                                                                             ? "yes"
-                                                                                .tr()
+                                                                            .tr()
                                                                             : 'no'
-                                                                                .tr(),
+                                                                            .tr(),
                                                                         style: GoogleFonts.alata(
                                                                             color:
-                                                                                Color(0xff767676),
+                                                                            Color(0xff767676),
                                                                             fontSize: 14))
                                                                   ],
                                                                 ),
-                                                              )
+                                                              ),
+
+
                                                             ],
                                                           ),
                                                         ),
                                                       ),
+                                                      Padding(
+                                                        padding:
+                                                        const EdgeInsets
+                                                            .all(12.0),
+                                                        child: InkWell(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              if (recurring ==
+                                                                  false) {
+                                                                recurring = true;
+                                                              } else {
+                                                                recurring =
+                                                                false;
+                                                              }
+                                                            }
+                                                            );
+                                                          },
+                                                          child: Row(
+                                                            children: [
+                                                              Container(
+                                                                decoration: BoxDecoration(
+                                                                    color: Color(
+                                                                        0xff3F38DD)
+                                                                        .withOpacity(
+                                                                        0.17),
+                                                                    borderRadius:
+                                                                    BorderRadius.circular(
+                                                                        12)),
+                                                                child:
+                                                                const Padding(
+                                                                  padding:
+                                                                  EdgeInsets
+                                                                      .all(
+                                                                      8.0),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .question_mark,
+                                                                    color: Color(
+                                                                        0xff3F38DD),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left:
+                                                                    8.0),
+                                                                child: Column(
+                                                                  crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                                  children: [
+                                                                    Text(
+                                                                      "Make recurring"
+                                                                          .tr(),
+                                                                      style: GoogleFonts.alata(
+                                                                          fontSize:
+                                                                          14),
+                                                                    ),
+                                                                    Text(
+                                                                        recurring
+                                                                            ? "yes"
+                                                                            .tr()
+                                                                            : 'no'
+                                                                            .tr(),
+                                                                        style: GoogleFonts.alata(
+                                                                            color:
+                                                                            Color(0xff767676),
+                                                                            fontSize: 14))
+                                                                  ],
+                                                                ),
+                                                              ),
+
+
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+
+
                                                       TextButton(
                                                           onPressed: () {
                                                             saveReminder(
@@ -488,54 +576,81 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                                                                 mydate,
                                                                 notified,
                                                                 categories[
-                                                                    categoryIndex],
-                                                                false);
-                                                            if (notified ==
-                                                                true) {
-                                                              AwesomeNotifications().createNotification(
-                                                                  content: NotificationContent(
-                                                                      id: Random()
-                                                                          .nextInt(
-                                                                              100),
-                                                                      title: categories[
-                                                                          categoryIndex],
-                                                                      body: nameController
-                                                                          .text,
-                                                                      channelKey:
-                                                                          'Yuva Again'),
-                                                                  schedule: NotificationCalendar
-                                                                      .fromDate(
-                                                                          date:
-                                                                              mydate));
+                                                                categoryIndex],
+                                                                recurring, false);
+
+
+                                                            while (recurring==true)
+                                                            {
+
+                                                              recurring=false;
+
+                                                              var timer = Timer(Duration(seconds: 60), () =>
+
+                                                            AwesomeNotifications().createNotification(
+                                                            content: NotificationContent(
+                                                            id: Random()
+                                                                .nextInt(
+                                                            100),
+                                                            title: categories[
+                                                            categoryIndex],
+                                                            body: nameController
+                                                                .text,
+                                                            channelKey:
+                                                            'Yuva Again'),
+                                                            schedule: NotificationCalendar.fromDate(date:
+                                                            mydate)));
+                                                              timer.cancel();
+                                                              recurring=false;
                                                             }
+                                                            if (notified ==
+                                                                true&&recurring==false) {
+
+                                                                    AwesomeNotifications().createNotification(
+                                                                    content: NotificationContent(
+                                                                    id: Random()
+                                                                        .nextInt(
+                                                                    100),
+                                                                    title: categories[
+                                                                    categoryIndex],
+                                                                    body: nameController
+                                                                        .text,
+                                                                    channelKey:
+                                                                    'Yuva Again'),
+                                                                    schedule: NotificationCalendar
+                                                                        .fromDate(
+                                                                    date:
+                                                                    mydate));
+                                                                    }
+
                                                           },
                                                           child: Container(
                                                             width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width -
+                                                                context)
+                                                                .size
+                                                                .width -
                                                                 48,
                                                             decoration: BoxDecoration(
                                                                 color: Color(
                                                                     0xff5A68F6),
                                                                 borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12)),
+                                                                BorderRadius
+                                                                    .circular(
+                                                                    12)),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsets
-                                                                      .all(8.0),
+                                                              const EdgeInsets
+                                                                  .all(8.0),
                                                               child: Text(
                                                                 "add".tr(),
                                                                 textAlign:
-                                                                    TextAlign
-                                                                        .center,
+                                                                TextAlign
+                                                                    .center,
                                                                 style: GoogleFonts.alata(
                                                                     color: Colors
                                                                         .white,
                                                                     fontSize:
-                                                                        16),
+                                                                    16),
                                                               ),
                                                             ),
                                                           ))
@@ -545,27 +660,46 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                                               ),
                                             );
                                           }));
-                            },
-                            icon: const Icon(
-                              Icons.add,
-                              size: 32,
-                              color: Colors.white,
-                            )),
-                      ))
+                                },
+                                icon: const Icon(
+                                  Icons.add,
+                                  size: 32,
+                                  color: Colors.white,
+                                )),
+                          ))
+                    ],
+                  ),
+                  Text(
+                    "hobby_tracker".tr(),
+                    style: GoogleFonts.alata(fontSize: 32),
+                  ),
                 ],
               ),
-              Text(
-                "hobby_tracker".tr(),
-                style: GoogleFonts.alata(fontSize: 32),
-              ),
-            ],
-          ),
-          ValueListenableBuilder(
-            valueListenable: Hive.box<Reminders>('reminders').listenable(),
-            builder: (context, box, _) {
-              final reminders = box.values.toList().cast<Reminders>();
-              for (int i = 0; i < reminders.length; i++) {
-                if (reminders[i].done == false) {
+              ValueListenableBuilder(
+                valueListenable: Hive.box<Reminders>('reminders').listenable(),
+                builder: (context, box, _) {
+                  final reminders = box.values.toList().cast<Reminders>();
+                  for (int i = 0; i < reminders.length; i++) {
+                    if (reminders[i].done == false) {
+                      return CalendarTimeline(
+                        initialDate: initialval,
+                        firstDate: DateTime.now().subtract(Duration(days: 365)),
+                        lastDate: DateTime.now().add(Duration(days: 365)),
+                        onDateSelected: (date) async {
+                          setState(() {
+                            initialval = date;
+                          });
+                        },
+                        leftMargin: 20,
+                        monthColor: Colors.grey,
+                        dayColor: Colors.black,
+                        activeDayColor: Colors.white,
+                        activeBackgroundDayColor: Color(0xffFDBC4C),
+                        dotsColor: Colors.white,
+                        locale: 'en_ISO',
+                      );
+                    }
+                  }
                   return CalendarTimeline(
                     initialDate: initialval,
                     firstDate: DateTime.now().subtract(Duration(days: 365)),
@@ -579,103 +713,84 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                     monthColor: Colors.grey,
                     dayColor: Colors.black,
                     activeDayColor: Colors.white,
-                    activeBackgroundDayColor: Color(0xffFDBC4C),
+                    activeBackgroundDayColor: Color(0xff00B6AA),
                     dotsColor: Colors.white,
-                    locale: 'en_ISO',
+                    locale: context.locale.languageCode,
                   );
-                }
-              }
-              return CalendarTimeline(
-                initialDate: initialval,
-                firstDate: DateTime.now().subtract(Duration(days: 365)),
-                lastDate: DateTime.now().add(Duration(days: 365)),
-                onDateSelected: (date) async {
-                  setState(() {
-                    initialval = date;
-                  });
                 },
-                leftMargin: 20,
-                monthColor: Colors.grey,
-                dayColor: Colors.black,
-                activeDayColor: Colors.white,
-                activeBackgroundDayColor: Color(0xff00B6AA),
-                dotsColor: Colors.white,
-                locale: context.locale.languageCode,
-              );
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16.0, 16, 0, 16),
-            child: Text(
-              "my_tasks".tr(),
-              style: GoogleFonts.alata(fontSize: 32),
-            ),
-          ),
-          Container(
-            height: 175,
-            width: MediaQuery.of(context).size.width,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: categories.length,
-                itemBuilder: (context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          selectedCategory = index;
-                        });
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12)),
-                        width: 150,
-                        height: 125,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Text(
-                                categories[index].toString().tr(),
-                                style: GoogleFonts.alata(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                            )
-                          ],
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16.0, 16, 0, 16),
+                child: Text(
+                  "my_tasks".tr(),
+                  style: GoogleFonts.alata(fontSize: 32),
+                ),
+              ),
+              Container(
+                height: 175,
+                width: MediaQuery.of(context).size.width,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories.length,
+                    itemBuilder: (context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              selectedCategory = index;
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12)),
+                            width: 150,
+                            height: 125,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Text(
+                                    categories[index].toString().tr(),
+                                    style: GoogleFonts.alata(
+                                        fontSize: 18, fontWeight: FontWeight.bold),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  );
-                }),
-          ),
-          Expanded(
-              child: ValueListenableBuilder(
-            valueListenable: Hive.box<Reminders>('reminders').listenable(),
-            builder: (context, box, _) {
-              final reminders = box.values.toList().cast<Reminders>();
-              return ListView.builder(
-                  itemCount: reminders.length,
-                  itemBuilder: (context, int index) {
-                    return reminders[index].date.year == initialval.year &&
-                            reminders[index].date.month == initialval.month &&
-                            reminders[index].date.day == initialval.day
-                        ? (selectedCategory == -1
-                            ? ReminderCard(reminders[index], index)
-                            : (reminders[index].category ==
-                                    categories[selectedCategory]
+                      );
+                    }),
+              ),
+              Expanded(
+                  child: ValueListenableBuilder(
+                    valueListenable: Hive.box<Reminders>('reminders').listenable(),
+                    builder: (context, box, _) {
+                      final reminders = box.values.toList().cast<Reminders>();
+                      return ListView.builder(
+                          itemCount: reminders.length,
+                          itemBuilder: (context, int index) {
+                            return reminders[index].date.year == initialval.year &&
+                                reminders[index].date.month == initialval.month &&
+                                reminders[index].date.day == initialval.day
+                                ? (selectedCategory == -1
+                                ? ReminderCard(reminders[index], index)
+                                : (reminders[index].category ==
+                                categories[selectedCategory]
                                 ? ReminderCard(reminders[index], index)
                                 : Container()))
-                        : Container();
-                  });
-            },
-          ))
-        ],
-      ),
-    ));
+                                : Container();
+                          });
+                    },
+                  ))
+            ],
+          ),
+        ));
   }
 
   Widget ReminderCard(Reminders reminder, int index) {
@@ -727,7 +842,7 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(vertical: 2.0),
+                              const EdgeInsets.symmetric(vertical: 2.0),
                               child: Text(
                                 reminder.name,
                                 style: GoogleFonts.alata(fontSize: 24),
@@ -736,7 +851,7 @@ class _HobbyTrackerState extends State<HobbyTracker> {
                             Text(
                               DateFormat('h:mm a').format(reminder.date),
                               style:
-                                  GoogleFonts.alata(color: Color(0xff91D7E0)),
+                              GoogleFonts.alata(color: Color(0xff91D7E0)),
                             ),
                           ],
                         ),
@@ -760,5 +875,6 @@ class _HobbyTrackerState extends State<HobbyTracker> {
         ),
       ),
     );
+
   }
 }

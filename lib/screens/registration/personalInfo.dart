@@ -82,7 +82,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                                         BorderSide(color: Color(0xff12253A))),
                                 labelText: "name".tr(),
                                 labelStyle: GoogleFonts.alata(
-                                    fontSize: 16, color: Color(0xff12253A))),
+                                    fontSize: 12, color: Color(0xff12253A))),
                           ),
                         ),
                       ],
@@ -194,7 +194,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                             minHeight: 36.0), // min sizes for Material buttons
                         alignment: Alignment.center,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          padding: const EdgeInsets.symmetric(vertical: 3.0),
                           child: Text(
                             'submit'.tr(),
                             textAlign: TextAlign.center,

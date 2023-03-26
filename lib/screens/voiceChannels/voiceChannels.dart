@@ -6,6 +6,7 @@ import 'package:yuva_again/screens/voiceChannels/audioPage.dart';
 import 'package:yuva_again/services/treeIncrementor.dart';
 import 'package:yuva_again/services/yourChannels.dart';
 import 'package:yuva_again/widgets/header.dart';
+import 'package:alan_voice/alan_voice.dart';
 
 class VoiceChannels extends StatefulWidget {
   const VoiceChannels({Key? key}) : super(key: key);
@@ -33,6 +34,42 @@ class _VoiceChannelsState extends State<VoiceChannels> {
     setState(() {
       yourchannels = channels;
     });
+  }
+  _VoiceChannelsState() {
+    /// Init Alan Button with project key from Alan Studio
+    AlanVoice.addButton("1249d46220175a3253da12841dc64ed42e956eca572e1d8b807a3e2338fdd0dc/stage");
+    AlanVoice.onCommand.add((command) =>_handleCommand(command.data));
+  }
+  void _handleCommand(Map<String,dynamic>command){
+    switch(command["command"]){
+      case "Knitting":
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+            builder: (context) => CallPage(callID: "1")));
+        break;
+      case "Reading":
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+            builder: (context) => CallPage(callID: "1")));
+        break;
+      case "Gardening":
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+            builder: (context) => CallPage(callID: "1")));
+        break;
+      case "Cooking":
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+            builder: (context) => CallPage(callID: "1")));
+        break;
+
+      default:
+        debugPrint("unknown command");
+    }
   }
 
   @override

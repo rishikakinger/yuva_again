@@ -15,6 +15,7 @@ class VoiceChannels extends StatefulWidget {
 }
 
 class _VoiceChannelsState extends State<VoiceChannels> {
+
   FirebaseAuth? auth;
   List yourchannels = [];
   bool explore = false;

@@ -38,6 +38,9 @@ Future<void> main() async {
   ]);
 }
 
+final RouteObserver<PageRoute> routeObserver= RouteObserver<PageRoute>();
+
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -63,7 +66,10 @@ class MyApp extends StatelessWidget {
           inputDecorationTheme:
               const InputDecorationTheme(border: OutlineInputBorder()),
         ),
-        home: SplashScreen());
+        home: SplashScreen(),
+      navigatorObservers: [routeObserver],
+    );
+
   }
 }
 
@@ -74,7 +80,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen> with RouteAware {
+
   @override
   void initState() {
     Timer(

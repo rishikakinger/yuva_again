@@ -29,15 +29,57 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool _greetingIsPlayed = false;
   _HomeState() {
     /// Init Alan Button with project key from Alan Studio
     AlanVoice.addButton("1249d46220175a3253da12841dc64ed42e956eca572e1d8b807a3e2338fdd0dc/stage");
 
-    /// Handle commands from Alan Studio
-    AlanVoice.onCommand.add((command) {
-      debugPrint("got new command ${command.toString()}");
+    AlanVoice.onButtonState.add((state) {
+      if (state.name == "ONLINE" && !_greetingIsPlayed) {
+        _greetingIsPlayed = true;
+        AlanVoice.activate();
+        AlanVoice.playText("Welcome to Yuva Again");
+      }
+
     });
+
+    var duration = const Duration(seconds: 5);
+    sleep(duration);
+    AlanVoice.onCommand.add((command) =>_handleCommand(command.data));
   }
+  void _handleCommand(Map<String,dynamic>command){
+    switch(command["command"]){
+      case "Video":
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (builder) => VoiceChannels()));
+        break;
+      case "Hobbies":
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (builder) => MenuChoice()));
+        break;
+      case "Games":
+        MaterialPageRoute(
+            builder: (builder) => Games(
+              url:
+              "https://www.seniorsonline.vic.gov.au/services-information/games"
+            ));
+        break;
+      case "Profile":
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (builder) => Profile()));
+        break;
+      default:
+        debugPrint("unknown command");
+      }
+    }
+
+
   FirebaseAuth? _auth;
   String greetings = '';
   Artboard? riveartboard;

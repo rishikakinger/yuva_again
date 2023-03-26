@@ -56,6 +56,7 @@ class _HomeState extends State<Home> {
                 builder: (builder) => VoiceChannels()));
         break;
       case "Hobbies":
+        Navigator.pop(context);
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -74,6 +75,13 @@ class _HomeState extends State<Home> {
             MaterialPageRoute(
                 builder: (builder) => Profile()));
         break;
+      case "Notifications":
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (builder) => Notifications()));
+        break;
+
       default:
         debugPrint("unknown command");
       }

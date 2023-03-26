@@ -5,6 +5,7 @@ import 'package:yuva_again/screens/hobbies/HobbiesPage.dart';
 import 'package:yuva_again/screens/hobbies/eventsPage.dart';
 import 'package:yuva_again/screens/hobbies/hobbies.dart';
 import 'package:yuva_again/widgets/header.dart';
+import 'package:alan_voice/alan_voice.dart';
 
 class MenuChoice extends StatefulWidget {
   const MenuChoice({Key? key}) : super(key: key);
@@ -14,6 +15,27 @@ class MenuChoice extends StatefulWidget {
 }
 
 class _MenuChoiceState extends State<MenuChoice> {
+  _MenuChoiceState() {
+    /// Init Alan Button with project key from Alan Studio
+    AlanVoice.addButton("1249d46220175a3253da12841dc64ed42e956eca572e1d8b807a3e2338fdd0dc/stage");
+
+    AlanVoice.onCommand.add((command) =>_handleCommand(command.data));
+  }
+  void _handleCommand(Map<String,dynamic>command){
+    switch(command["command"]){
+      case "events":
+        Navigator.push(context,
+            MaterialPageRoute(builder: (builder) => EventsPage()));
+        break;
+      case "tracker":
+        Navigator.push(context,
+            MaterialPageRoute(builder: (builder) => HobbyTracker()));
+        break;
+      default:
+        debugPrint("unknown command");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

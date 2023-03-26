@@ -7,7 +7,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:yuva_again/services/getNotifications.dart';
 import 'package:yuva_again/widgets/header.dart';
-
+import 'package:alan_voice/alan_voice.dart';
 import '../../models/reminders.dart';
 
 class Notifications extends StatefulWidget {
@@ -18,6 +18,7 @@ class Notifications extends StatefulWidget {
 }
 
 class _NotificationsState extends State<Notifications> {
+
   List allnotifications = [];
   @override
   void initState() {

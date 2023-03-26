@@ -66,6 +66,7 @@ class _VoiceChannelsState extends State<VoiceChannels> {
             MaterialPageRoute(
             builder: (context) => CallPage(callID: "1")));
         break;
+      case"back":
 
       default:
         debugPrint("unknown command");

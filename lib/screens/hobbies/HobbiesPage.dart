@@ -12,6 +12,7 @@ import 'package:yuva_again/models/reminders.dart';
 import 'package:yuva_again/utils/saveReminder.dart';
 import 'package:yuva_again/widgets/header.dart';
 import 'package:intl/intl.dart';
+import 'package:alan_voice/alan_voice.dart';
 
 class HobbyTracker extends StatefulWidget {
   const HobbyTracker({Key? key}) : super(key: key);
@@ -21,6 +22,8 @@ class HobbyTracker extends StatefulWidget {
 }
 
 class _HobbyTrackerState extends State<HobbyTracker> {
+
+
   final nameController = TextEditingController();
   FirebaseAuth? auth;
   List categories = ['events', 'voice_channel', 'reminder'];
@@ -31,13 +34,16 @@ class _HobbyTrackerState extends State<HobbyTracker> {
   DateTime initialval = DateTime.now();
   DateTime mydate = DateTime.now();
   late TimeOfDay mytime;
+  void init_wrapper() {}
   @override
   void initState() {
     super.initState();
     init_wrapper();
   }
 
-  init_wrapper() {}
+
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

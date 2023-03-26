@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yuva_again/screens/home.dart';
 import 'package:yuva_again/services/getMyChannels.dart';
-
+import 'package:alan_voice/alan_voice.dart';
 import '../../services/getChannels.dart';
 import 'notifications.dart';
 
@@ -17,6 +17,28 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  _ProfileState() {
+    /// Init Alan Button with project key from Alan Studio
+    AlanVoice.addButton("1249d46220175a3253da12841dc64ed42e956eca572e1d8b807a3e2338fdd0dc/stage");
+
+
+
+    AlanVoice.onCommand.add((command) =>_handleCommand(command.data));
+  }
+  void _handleCommand(Map<String,dynamic>command){
+    switch(command["command"]){
+      case "Home":
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (builder) => Home()));
+        break;
+
+      default:
+        debugPrint("unknown command");
+    }
+  }
+
   FirebaseAuth? _auth;
   String name = "";
   TextEditingController phoneno = TextEditingController();

@@ -17,6 +17,8 @@ class EventsPage extends StatefulWidget {
 }
 
 class _EventsPageState extends State<EventsPage> {
+
+
   List eventsList = [];
   String search = "";
   late LocationData currentData;
